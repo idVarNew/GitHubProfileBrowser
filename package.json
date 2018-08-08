@@ -31,6 +31,8 @@
     "bulma": "^0.7.1",
     "bulma-start": "^0.0.2",
     "bulma-timeline": "^2.0.3",
-    "cash-dom": "^2.1.7"
+    "cash-dom": "^2.1.7",
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1"
   }
 }
