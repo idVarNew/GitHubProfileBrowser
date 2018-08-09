@@ -10,25 +10,27 @@ export class App {
 
     this.userNameInput = $('.username.input');
     this.loadButton = $('.load-username');
-    this.userTimeline = $('#user-timeline')
+    this.userTimeline = $('#user-timeline');
     this.isInputValidate = false;
+    this.spinner = $("#spinner");
+    this.columns = $("#main-columns");
     this.initializeApp();
   }
 
   initializeApp() {
 
-    this.loadButton.on('click', (e) => {
+    this.loadButton.on('click', e => {
       e.preventDefault();
 
       const userName = this.userNameInput.val();
-  
+
       if (userName.match(/^[a-z0-9_-]+$/)) {
 
         if (this.isInputValidate) {
-          this.removeErrorSign()
+          this.removeErrorSign();
+          this.isInputValidate = false;
         }
-
-        this.isInputValidate = false;
+        
         this.getUserProfile(userName);
 
       } else {
@@ -39,8 +41,11 @@ export class App {
   }
 
   getUserProfile(userName) {
+
+    this.isLoading(true);
+    
     fetch(`https://api.github.com/users/${userName}`)
-      .then((response) => {
+      .then(response => {
         if (!response.ok) throw Error(response.statusText);
         return response.json();
       })
@@ -53,9 +58,21 @@ export class App {
       })
       .then(events => {
         this.getEvents(events);
-      }).catch((error) => {
-        console.log(error);
+        this.isLoading(false)
       })
+      .catch(error => {
+        console.log(error);
+        this.isLoading(false)
+      })
+  }
+
+  isLoading(pending) {
+    if (pending) {
+      this.spinner.removeClass("is-hidden");      
+    }else{
+      this.spinner.addClass("is-hidden");
+      this.columns.removeClass("is-hidden");
+    }
   }
 
   addErrorSign() {
@@ -145,7 +162,7 @@ export class App {
 
     })
     this.userTimeline.html(eventsTemplates);
-
+ 
   }
 
 
