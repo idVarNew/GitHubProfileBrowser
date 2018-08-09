@@ -3,6 +3,9 @@ const path = require('path'),
   CleanWebpackPlugin = require('clean-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin');
+  const PurifyCSSPlugin = require('purifycss-webpack');
+  const glob = require('glob-all');
+
 
 const extractPlugin = new ExtractTextPlugin({filename: './assets/css/app.css'});
 
@@ -79,7 +82,15 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({template: 'index.html'}),
-    extractPlugin
+    extractPlugin,
+    new PurifyCSSPlugin({
+      paths: glob.sync(
+        [
+          path.join(__dirname, 'src/*.html'),
+          path.join(__dirname, 'src/app.js')
+      ]
+      ),
+    })
   ],
 
   devServer: {

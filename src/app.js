@@ -27,14 +27,14 @@ export class App {
       if (userName.match(/^[a-z0-9_-]+$/)) {
 
         if (this.isInputValidate) {
-          this.removeErrorSign();
+          this.removeErrorSign(); 
           this.isInputValidate = false;
         }
-        
+      
         this.getUserProfile(userName);
 
       } else {
-        this.addErrorSign("red");
+        this.addErrorSign();
         this.isInputValidate = true;
       }
     })
@@ -51,6 +51,7 @@ export class App {
       })
       .then(profile => {
         this.updateProfile(profile);
+
         return fetch(`https://api.github.com/users/${userName}/events/public`);
       }).then(response => {
         if (!response.ok) throw Error(response.statusText);
@@ -58,11 +59,11 @@ export class App {
       })
       .then(events => {
         this.getEvents(events);
-        this.isLoading(false)
+        this.isLoading(false);        
       })
       .catch(error => {
         console.log(error);
-        this.isLoading(false)
+        this.isLoading(false);
       })
   }
 
@@ -156,17 +157,17 @@ export class App {
           </div>
         </div>
       </article>
-  `
+  `;
       eventsTemplates += template;
-
-
     })
+
     this.userTimeline.html(eventsTemplates);
  
   }
 
 
   updateProfile(profile) {
+    // These DOM elements should be cached somewhere:
     $('#profile-name').text(profile.login)
     $('#profile-image').attr('src', profile.avatar_url)
     $('#profile-url').attr('href', profile.html_url).text(profile.login)
