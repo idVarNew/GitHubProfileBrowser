@@ -8,19 +8,27 @@
 
 <body>
 
+  <h1 class="visuallyhidden">
+    Github Profile browser
+  </h1>
+
   <nav class="navbar">
+    <h2 class="visuallyhidden">Navbar</h2>
     <div class="navbar-brand">
       <div class="navbar-item">
-        <div class="field has-addons">
-          <div class="control">
-            <input class="input username" type="text" placeholder="enter github username">
+        <form class="navbar-form">
+          <div class="field has-addons">
+            <div class="control">
+              <label for="username" class="visuallyhidden">enter github username</label>
+              <input class="input username" type="search" placeholder="enter github username" id="username">
+            </div>
+            <div class="control">
+              <button class="button is-info load-username">
+                Load
+              </button>
+            </div>
           </div>
-          <div class="control">
-            <button class="button is-info load-username">
-              Load
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
 
       <div class="navbar-item">
