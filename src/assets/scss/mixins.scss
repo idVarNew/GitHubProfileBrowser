@@ -1,0 +1,15 @@
+
+
+@mixin media($media) {
+    @if $media==medium {
+      @media only screen and (min-width: 768px) {
+        @content;
+      }
+    }
+    @if $media==large {
+      @media only screen and (min-width: 1280px) {
+        @content;
+      }
+    }
+  }
+  

@@ -1,8 +1,13 @@
 @import "~bulma";
 @import "~bulma-timeline";
+@import "mixins";
 .navbar {
   border-bottom: 1px solid #eee;
   margin-bottom: 8px;
+}
+
+.container {
+  padding: 15px;
 }
 
 .content {
@@ -20,7 +25,7 @@
   margin-top: 10px;
 }
 
-.is-validation-error{
+.is-validation-error {
   border: 1px solid red;
 }
 
@@ -40,6 +45,20 @@
   position: absolute;
   width: 1px;
 }
-cite{
+
+cite {
   font-style: normal;
+}
+
+
+.profile-container {
+  &.column {
+    width: 100%;
+    @include media(medium) {
+      width: 50%;
+    }
+    @include media(large) {
+      width: 30%;
+    }
+  }
 }
