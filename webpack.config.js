@@ -2,11 +2,11 @@ const path = require('path'),
   webpack = require('webpack'),
   CleanWebpackPlugin = require('clean-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
-  ExtractTextPlugin = require('extract-text-webpack-plugin');
-  const PurifyCSSPlugin = require('purifycss-webpack');
-  const glob = require('glob-all');
+  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  PurifyCSSPlugin = require('purifycss-webpack'),
+  glob = require('glob-all');
 
-
+  
 const extractPlugin = new ExtractTextPlugin({filename: './assets/css/app.css'});
 
 const config = {
@@ -90,6 +90,7 @@ const config = {
           path.join(__dirname, 'src/app.js')
       ]
       ),
+      minimize: true
     })
   ],
 

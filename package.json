@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server",
-    "build": "./node_modules/.bin/webpack -p",
-    "watch": "./node_modules/.bin/webpack --watch"
+    "build": "./node_modules/.bin/webpack -p && npm run removeSM",
+    "watch": "./node_modules/.bin/webpack --watch",
+    "removeSM": "webpack -p --devtool false"
   },
   "keywords": [],
   "author": "",
